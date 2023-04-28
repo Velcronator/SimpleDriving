@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,8 +11,7 @@ public class Car : MonoBehaviour
 
     private int steerValue;
 
-
-     void Update()
+    void Update()
     {
         speed += speedGainPerSecond * Time.deltaTime;
 
@@ -19,9 +20,9 @@ public class Car : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.CompareTag("Obstacle"))
+        if (other.CompareTag("Obstacle"))
         {
             SceneManager.LoadScene(0);
         }
@@ -32,3 +33,4 @@ public class Car : MonoBehaviour
         steerValue = value;
     }
 }
+
